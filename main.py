@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Request
+from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models import User
@@ -8,6 +9,9 @@ from app.schema import UserCreate, UserUpdate
 
 app = FastAPI()
 
+@app.get("/", response_class=HTMLResponse)
+def get_home(request: Request):
+    return f"<body bgcolor='black' style='color: white'>Hey there. Feel free to hit one of the GET/POST requests. Check them out <a href='{str(request.url)}docs' style='color: white'>here.</a></body>"
 
 @app.get("/users/")
 def get_all_users(db: Session = Depends(get_db)):

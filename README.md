@@ -21,30 +21,30 @@ cd SimpleFastPyAPI
 Build Docker:
 
 ```bash
-docker build -t SimpleFastPyAPI .
+docker build -t simplefastpyapi .
 ```
 
 Run the application:
 
 ```bash
-docker run -p 8000:8000 -v $(pwd)/users.db:/app/users.db SimpleFastPyAPI
+docker run -p 8000:8000 simplefastpyapi
 ```
 
-Install the project dependencies:
+Install the project dependencies and run without Docker:
 
-```bash
-pip install -r requirements.txt
+```
+pip install uv
 ```
 
-Run the application directly without Docker:
-
 ```bash
-uvicorn main:app --reload
+uv run fastapi dev
 ```
 
 The application will start and be available at http://localhost:8000.
 
 ## API Endpoints
+
+Check the docs at http://localhost:8000/docs
 
 ### Retrieve a list of users:
 
